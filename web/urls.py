@@ -52,5 +52,9 @@ urlpatterns = [
     path('viewroom/<str:pk>/', views.viewroom.as_view(), name = "viewroom"),
     path('payment/<int:product_id>/', views.PaymentView.as_view(), name='payment'),  # Update this line
     path('pesapal/transaction/completed/', views.payment_completed, name='payment_completed'),
+    
+    
+    #mqtt
+    path('<device_id>/<command>/', views.control_esp8266, name='control_esp8266'),
 
 ]

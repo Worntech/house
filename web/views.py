@@ -26,6 +26,9 @@ from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 from django.utils.timezone import now  # Import now for timezone-aware datetime
 
+
+import paho.mqtt.client as mqtt
+
 # Create your views here.
 def signup(request):
     
@@ -79,6 +82,26 @@ def logout(request):
     auth.logout(request)
     # messages.info(request, 'Loged out succesefull.')
     return redirect('signin')
+
+
+
+import paho.mqtt.client as mqtt
+from django.http import HttpResponse
+from django.shortcuts import render
+
+# MQTT Broker details
+mqtt_broker = "164.90.230.152"
+mqtt_port = 1883
+
+def control_esp8266(request, device_id, command):
+    topic = f"home/esp8266/{device_id}/control"
+    client = mqtt.Client()
+    client.connect(mqtt_broker, mqtt_port, 60)
+    client.publish(topic, command)
+    return redirect('manual_control')
+    # return HttpResponse(f"Command '{command}' sent to {device_id}")
+
+
 
 
 def home(request):
@@ -198,7 +221,7 @@ def manual_control(request):
 
 # FOR CONNECTION OF THE HARDWARE
 
-ESP8266_IP = "http://192.168.43.65"
+ESP8266_IP = "http://192.168.1.100"
 
 def led_on(request):
     try:
@@ -429,9 +452,10 @@ def payment_completed(request):
         
         if Room_Number == "1":
             try:
-                response = requests.get(f"{ESP8266_IP}/lowdoorone", timeout=5)
-                response.raise_for_status()
-                # return JsonResponse({"status": "success", "state": "HIGH"})
+                topic = f"home/esp8266/mydevicecontrol/control"
+                client = mqtt.Client()
+                client.connect(mqtt_broker, mqtt_port, 60)
+                client.publish(topic, 'lowdoorone')
                 return redirect(reverse('viewroom', args=[product_id]))
             except requests.exceptions.RequestException as e:
                 return JsonResponse({"status": "error", "message": str(e)})
@@ -439,9 +463,10 @@ def payment_completed(request):
             return redirect(reverse('viewroom', args=[product_id]))
         elif Room_Number == "2":
             try:
-                response = requests.get(f"{ESP8266_IP}/lowdoortwo", timeout=5)
-                response.raise_for_status()
-                # return JsonResponse({"status": "success", "state": "HIGH"})
+                topic = f"home/esp8266/mydevicecontrol/control"
+                client = mqtt.Client()
+                client.connect(mqtt_broker, mqtt_port, 60)
+                client.publish(topic, 'lowdoortwo')
                 return redirect(reverse('viewroom', args=[product_id]))
             except requests.exceptions.RequestException as e:
                 return JsonResponse({"status": "error", "message": str(e)})
@@ -449,9 +474,10 @@ def payment_completed(request):
             return redirect(reverse('viewroom', args=[product_id]))
         elif Room_Number == "3":
             try:
-                response = requests.get(f"{ESP8266_IP}/lowdoorthree", timeout=5)
-                response.raise_for_status()
-                # return JsonResponse({"status": "success", "state": "HIGH"})
+                topic = f"home/esp8266/mydevicecontrol/control"
+                client = mqtt.Client()
+                client.connect(mqtt_broker, mqtt_port, 60)
+                client.publish(topic, 'lowdoorthree')
                 return redirect(reverse('viewroom', args=[product_id]))
             except requests.exceptions.RequestException as e:
                 return JsonResponse({"status": "error", "message": str(e)})
@@ -459,9 +485,10 @@ def payment_completed(request):
             return redirect(reverse('viewroom', args=[product_id]))
         elif Room_Number == "4":
             try:
-                response = requests.get(f"{ESP8266_IP}/lowdoorfour", timeout=5)
-                response.raise_for_status()
-                # return JsonResponse({"status": "success", "state": "HIGH"})
+                topic = f"home/esp8266/mydevicecontrol/control"
+                client = mqtt.Client()
+                client.connect(mqtt_broker, mqtt_port, 60)
+                client.publish(topic, 'lowdoorfour')
                 return redirect(reverse('viewroom', args=[product_id]))
             except requests.exceptions.RequestException as e:
                 return JsonResponse({"status": "error", "message": str(e)})
@@ -469,9 +496,10 @@ def payment_completed(request):
             return redirect(reverse('viewroom', args=[product_id]))
         elif Room_Number == "5":
             try:
-                response = requests.get(f"{ESP8266_IP}/lowdoorfive", timeout=5)
-                response.raise_for_status()
-                # return JsonResponse({"status": "success", "state": "HIGH"})
+                topic = f"home/esp8266/mydevicecontrol/control"
+                client = mqtt.Client()
+                client.connect(mqtt_broker, mqtt_port, 60)
+                client.publish(topic, 'lowdoorfive')
                 return redirect(reverse('viewroom', args=[product_id]))
             except requests.exceptions.RequestException as e:
                 return JsonResponse({"status": "error", "message": str(e)})

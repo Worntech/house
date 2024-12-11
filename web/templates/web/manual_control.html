@@ -138,28 +138,28 @@
                         <tbody>
                             <tr>
                                 <td>Room 1</td>
-                                <td><a href="{% url 'highdoorone' %}" class="lock-btn">Lock</a></td>
-                                <td><a href="{% url 'lowdoorone' %}" class="unlock-btn">Unlock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='highdoorone' %}" class="lock-btn">Lock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='lowdoorone' %}" class="unlock-btn">Unlock</a></td>
                             </tr>
                             <tr>
                                 <td>Room 2</td>
-                                <td><a href="{% url 'highdoortwo' %}" class="lock-btn">Lock</a></td>
-                                <td><a href="{% url 'lowdoortwo' %}" class="unlock-btn">Unlock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='highdoortwo' %}" class="lock-btn">Lock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='lowdoortwo' %}" class="unlock-btn">Unlock</a></td>
                             </tr>
                             <tr>
                                 <td>Room 3</td>
-                                <td><a href="{% url 'highdoorthree' %}" class="lock-btn">Lock</a></td>
-                                <td><a href="{% url 'lowdoorthree' %}" class="unlock-btn">Unlock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='highdoorthree' %}" class="lock-btn">Lock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='lowdoorthree' %}" class="unlock-btn">Unlock</a></td>
                             </tr>
                             <tr>
                                 <td>Room 4</td>
-                                <td><a href="{% url 'highdoorfour' %}" class="lock-btn">Lock</a></td>
-                                <td><a href="{% url 'lowdoorfour' %}" class="unlock-btn">Unlock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='highdoorfour' %}" class="lock-btn">Lock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='lowdoorfour' %}" class="unlock-btn">Unlock</a></td>
                             </tr>
                             <tr>
                                 <td>Room 5</td>
-                                <td><a href="{% url 'highdoorfive' %}" class="lock-btn">Lock</a></td>
-                                <td><a href="{% url 'lowdoorfive' %}" class="unlock-btn">Unlock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='highdoorfive' %}" class="lock-btn">Lock</a></td>
+                                <td><a href="{% url 'control_esp8266' device_id='mydevicecontrol' command='lowdoorfive' %}" class="unlock-btn">Unlock</a></td>
                             </tr>
                         </tbody>
                     </table>
